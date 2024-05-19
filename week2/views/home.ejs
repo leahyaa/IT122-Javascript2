@@ -1,0 +1,20 @@
+<html>
+<link rel="stylesheet" href="styles.css">
+
+<body>
+        <header>
+                <h1 class="center">
+                        Restaurants Home Page
+                </h1>
+        </header>
+        <div id="wrapper">
+
+                <% restaurants.forEach(function(restaurants) { %>
+                        <li><a href="/detail?name=<%= restaurants.name %>">
+                                        <%= restaurants.name %>
+                        </li>
+                        <% }); %>
+        </div>
+</body>
+
+</html>

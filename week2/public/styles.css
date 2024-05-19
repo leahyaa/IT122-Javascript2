@@ -1,0 +1,27 @@
+body{
+    background: beige;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#wrapper {
+    background-color: #D5F2E8;
+    width: 940px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+header {
+    height: 100px;
+    width: 940px;
+    margin: 0 auto;
+    background-color: #8fd2d4;
+    line-height: 100px;
+}
+li {
+    margin-left: 50px;
+    padding-top: 30px;
+   
+}
+.center {
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+}

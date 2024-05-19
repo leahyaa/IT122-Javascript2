@@ -1,0 +1,32 @@
+<html>
+<link rel="stylesheet" href="styles.css">
+<body>
+    <header><h1 class="center"><%= result.name %> details</h1></header>
+    <div id="wrapper">
+    <a href="/">Home</a>
+    <% if (result) { %>
+        
+        <li>
+            Name: <%= result.name %>
+        </li>
+        <li>
+            Cuisine: <%= result.cuisine %>
+        </li>
+        <li>
+            Rating: <%= result.rating %>
+        </li>
+        <li>
+            Location: <%= result.location %>
+        </li>
+        <li>
+            Business Hours: <%= result.businesshours %>
+        </li>
+        <% } else { %>
+            <h2>
+                <%= name %> not found
+            </h2>
+            <% } %>
+</div>
+</body>
+
+</html>

@@ -12,6 +12,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leahyaa/IT122-Javascript2/blob/main/week3/package.json"
+  },
   "author": "yajuan zeng",
   "license": "ISC"
 }

@@ -1,15 +1,16 @@
 {
-  "name": "week1",
+  "name": "week2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/leahyaa/IT122-Javascript2/blob/main/week1/package.json"
   },
   "author": "yajuan zeng",
   "license": "ISC"

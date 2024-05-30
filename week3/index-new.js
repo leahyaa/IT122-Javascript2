@@ -69,7 +69,7 @@ app.get('/api/restaurants/:name', (req, res) => {
 
 // Delete a restaurant
 app.get('/delete', (req, res, next) => {
-    restaurants.deleteOne({name: req.query.name })
+    restaurants.deleteOne({ name: req.query.name })
         .then((result) => {
             if (result.deletedCount === 1) {
                 console.log(`${req.query.name} has been deleted`);
@@ -83,18 +83,18 @@ app.get('/delete', (req, res, next) => {
 
 // Delete a restaurant API
 app.delete('/api/delete/:name', (req, res) => {
-    const { name } = req.params.name;
-    restaurants.deleteOne({ name })
+    const name = req.params.name;
+    restaurants.deleteOne({name})
         .then((result) => {
             if (result.deletedCount === 1) {
-                return res.status(200).json({ message: `${ name} has been deleted` });
+                return res.status(200).json({ message: `${name} has been deleted` });
             } else {
-                return res.status(404).json({ message: `${ name} not found` });
+                return res.status(404).json({ message: `${name} not found` });
             }
         })
         .catch(err => {
             console.error('Error deleting restaurant:', err);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ error: 'Error' });
         });
 });
 
@@ -107,15 +107,21 @@ app.get('/api/add/:name/:cuisine/:rating/:location/:businesshours', (req, res, n
         { name, cuisine, rating, location, businesshours },
         { upsert: true }
     )
-    .then(result => {
-        const updated = result.nModified > 0 ? 1 : 0;
-        console.log(updated);
-        res.json({ updated});
-    })
-    .catch(error => {
-        console.error('Error updating/adding restaurant:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    });
+        .then(result => {
+            console.log(result);
+            
+            const updated = result.modifiedCount ;
+            const added = result.upsertedCount;
+            if (updated == 1) {
+                res.json({updated})
+            } else {
+                res.json({added})
+            }
+        })
+        .catch(error => {
+            console.error('Error updating/adding restaurant:', error);
+            res.status(500).json({ error: 'Error' });
+        });
 });
 
 // Add or update a restaurant using request body
@@ -130,13 +136,13 @@ app.post('/api/add', (req, res, next) => {
                     { name },
                     { $set: { cuisine, rating, location, businesshours } }
                 )
-                .then(result => {
-                    res.json({ updated: result.nModified, item: existingRestaurant });
-                })
-                .catch(error => {
-                    console.error('Error updating restaurant:', error);
-                    res.status(500).json({ error: 'Internal Server Error' });
-                });
+                    .then(result => {
+                        res.json({ updated: result.nModified, item: existingRestaurant });
+                    })
+                    .catch(error => {
+                        console.error('Error updating restaurant:', error);
+                        res.status(500).json({ error: 'Error' });
+                    });
             } else {
                 // Create a new restaurant
                 const newRestaurant = new restaurants(req.body);
@@ -146,13 +152,13 @@ app.post('/api/add', (req, res, next) => {
                     })
                     .catch(error => {
                         console.error('Error saving restaurant:', error);
-                        res.status(500).json({ error: 'Internal Server Error' });
+                        res.status(500).json({ error: 'Error' });
                     });
             }
         })
         .catch(error => {
             console.error('Error finding restaurant:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ error: 'Error' });
         });
 });
 

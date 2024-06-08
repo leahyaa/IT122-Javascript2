@@ -24,8 +24,9 @@ mongoose.connection.on('open', () => {
 
 app.get('/', (req, res, next) => {
     restaurants.find({}).lean()
-        .then((restaurants) => {
-            res.render('home', { restaurants });
+        .then((items) => {
+            // pass items data array to home-page template
+            res.render('home_new', { items: JSON.stringify(items) });
         })
         .catch(err => next(err));
 });

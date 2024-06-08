@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Restaurants - React</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <h1 class="center">
+            Restaurants Home Page - by React
+        </h1>
+    </header>
+    <div id="wrapper">
+
+        <div id="root"></div>
+        <script type="text/babel">
+            // Create variable with unescaped JS data from server
+            let items = <%- items %>;
+
+            const RestaurantList = (props) => {
+                const listItems = props.data.map((item) => (
+                    <li key={item._id} id={item._id} onClick={props.clickHandler}>
+                        {item.name}
+                    </li>
+                ));
+                return <ul> {listItems} </ul>;
+            }
+
+            // Click event handler
+            const RestaurantDetail = (event) => {
+                window.location.href = "/detail?name=" + event.target.innerText;
+            }
+
+            // React component for displaying restaurant list
+            
+            // Render the RestaurantList component
+            ReactDOM.render(
+                <RestaurantList data={items} clickHandler={RestaurantDetail} />,
+                document.getElementById('root')
+            );
+        </script>
+        </div>
+</body>
+
+</html>

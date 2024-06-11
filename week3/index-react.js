@@ -24,11 +24,12 @@ mongoose.connection.on('open', () => {
 
 app.get('/', (req, res, next) => {
     restaurants.find({}).lean()
-        .then((items) => {
+        .then((restaurants) => {
             // pass items data array to home-page template
-            res.render('home_new', { items: JSON.stringify(items) });
+            res.render('home_new', { restaurants: JSON.stringify(restaurants) });
         })
         .catch(err => next(err));
+        
 });
 
 // Get all restaurants API

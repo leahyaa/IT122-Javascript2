@@ -38,15 +38,15 @@
             const ItemDetail = (props) => {
                 return <div>
                 <hr />
-                    <h3>Restaurant Details</h3>
-                    <form>
-                        Name: <input type="text" name="name" value={props.item.name || ""} onChange={props.handleChange} /><br/>
-                        Cuisine: <input type="text" name="cuisine" value={props.item.cuisine || ""} onChange={props.handleChange}/><br/>
-                        Rating: <input type="text" name="rating" value={props.item.rating || ""} onChange={props.handleChange} /><br/>
-                        Location: <input type="text" name="location" value={props.item.location || ""} onChange={props.handleChange} /><br/>
-                        Business Hours: <input type="text" name="businesshours" value={props.item.businesshours || ""} onChange={props.handleChange} /><br/>
+                    <h2>Restaurant Details</h2>
+                    <form class="form">
+                        <strong>Name:</strong> <input type="text" name="name" value={props.item.name || ""} onChange={props.handleChange} /><br/><br/>
+                        <strong>Cuisine:</strong> <input type="text" name="cuisine" value={props.item.cuisine || ""} onChange={props.handleChange}/><br/><br/>
+                        <strong>Rating:</strong> <input type="text" name="rating" value={props.item.rating || ""} onChange={props.handleChange} /><br/><br/>
+                        <strong>Location:</strong> <input type="text" name="location" value={props.item.location || ""} onChange={props.handleChange} /><br/><br/>
+                        <strong>Business Hours:</strong> <input type="text" name="businesshours" value={props.item.businesshours || ""} onChange={props.handleChange} /><br/><br/>
                     </form>
-                    <button name="clear" onClick={props.clearForm}>Clear</button>&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;<button name="clear" onClick={props.clearForm}>Clear</button>
                 </div>
             }
         
@@ -83,7 +83,8 @@
                 }
         
                 return (
-                    <div> <h2>Restaurants List</h2>
+                    <div> 
+                        <h2>Restaurants List</h2>
                         <Restaurants data={items} clickHandler={selectItem} />
                         <ItemDetail
                           item={currentItem}

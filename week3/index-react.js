@@ -12,8 +12,9 @@ app.set("port", process.env.PORT || 3000);
 app.use(express.static('./public'));
 app.set("view engine", "ejs");
 
+
 mongoose.connect(connectionString, {
-    dbName: 'your_database_name',
+    dbName: 'restaurants',
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -21,6 +22,7 @@ mongoose.connect(connectionString, {
 mongoose.connection.on('open', () => {
     console.log('Mongoose connected.');
 });
+
 
 app.get('/', (req, res, next) => {
     restaurants.find({}).lean()
